@@ -1,0 +1,5 @@
+# Set global variables
+MAZE_WIDTH = 20
+MAZE_HEIGHT = 20
+CELL_SIZE = 5
+TICK_SPEED = 30
