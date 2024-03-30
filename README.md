@@ -23,6 +23,9 @@ The project is modularized into the following components:
 - `main.py`:
   - Serves as the entry point for the project.
   - Orchestrates maze generation, algorithm selection, and visualization.
+
+- `config.py`:
+   - Set parameters like width, height, cell size, and script execution speed here.
 ## Getting Started
 
 Clone the repository:
