@@ -7,8 +7,6 @@ BLACK = (0, 0, 0)        # Wall
 BLUE = (45, 208, 255)    # Path
 RED = (255, 0, 0)        # Current position
 
-CELL_SIZE = 10
-
 def init_screen(width=MAZE_WIDTH, height=MAZE_HEIGHT):
     pygame.init()
     return pygame.display.set_mode((width * CELL_SIZE, height * CELL_SIZE))
