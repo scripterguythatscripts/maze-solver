@@ -6,13 +6,12 @@ from config import MAZE_WIDTH, MAZE_HEIGHT, CELL_SIZE
 
 def main():
     maze = generate_maze(MAZE_WIDTH, MAZE_HEIGHT)
-    start_pos = (0, 1)
-    algorithm = "a_star_search"
+    algorithm = "breadth_first_search" # Test out the 'a_star_search' algorithm as well!
 
     screen = init_screen(MAZE_WIDTH + 1, MAZE_HEIGHT + 1)
     clock = pygame.time.Clock()
 
-    solved = solve_maze(maze, start_pos, algorithm, screen, clock)
+    solved = solve_maze(maze, algorithm, screen, clock)
 
     if solved:
         print("Maze solved!")

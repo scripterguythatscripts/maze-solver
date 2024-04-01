@@ -1,7 +1,7 @@
 from collections import deque
 import heapq
 from maze_visualizer import draw_maze
-from config import MAZE_WIDTH, MAZE_HEIGHT, TICK_SPEED
+from config import MAZE_WIDTH, MAZE_HEIGHT, TICK_SPEED, START_POS
 
 def heuristic(a, b):
     """Calculates the Manhattan distance between two points."""
@@ -112,12 +112,12 @@ def a_star_search(maze, start, goal, screen, clock):
     return found_exit
 
 
-def solve_maze(maze, start_pos, algorithm, screen, clock):
+def solve_maze(maze, algorithm, screen, clock):
     """Solves the maze using the specified algorithm."""
     if algorithm == "a_star_search":
         exit_pos = (MAZE_WIDTH, MAZE_HEIGHT-1)
-        return a_star_search(maze, start_pos, exit_pos, screen, clock)
+        return a_star_search(maze, START_POS, exit_pos, screen, clock)
     elif algorithm == "breadth_first_search":
-        return breadth_first_search(maze, start_pos, screen, clock)
+        return breadth_first_search(maze, START_POS, screen, clock)
     else:
         raise ValueError("Unknown algorithm")
