@@ -51,48 +51,64 @@ def breadth_first_search(maze, start_pos, screen, clock):
 
 def a_star_search(maze, start, goal, screen, clock):
     """Solves the maze using the A* search algorithm."""
-    frontier = []
-    heapq.heappush(frontier, (0, start))
+    # Initialize the frontier heap with the starting position and its priority
+    frontier = [(0, start)]
+    
+    # Initialize dictionaries to store the path and cost
     came_from = {start: None}
     cost_so_far = {start: 0}
+    
     found_exit = False
     current_position = start
-
+    
     while frontier and not found_exit:
-        current = heapq.heappop(frontier)[1]
-
+        # Pop the position with the lowest cost from the frontier
+        _, current = heapq.heappop(frontier)
+        
+        # Check if the current position is the goal
         if current == goal:
             found_exit = True
             break
-
+        
+        # Mark the previous position as part of the path
         maze[current_position[1]][current_position[0]] = 3
-
+        
+        # Update the current position
         current_position = current
-
+        
+        # Check the adjacent cells
         for dx, dy in [(0, 1), (0, -1), (1, 0), (-1, 0)]:
             next_cell = (current[0] + dx, current[1] + dy)
+            
+            # Check if the next cell is within the maze bounds
             if 0 <= next_cell[0] < MAZE_WIDTH + 1 and 0 <= next_cell[1] < MAZE_HEIGHT + 1:
-                if maze[next_cell[1]][next_cell[0]] in (0, 2):  # Check if the cell is walkable or the exit
+                # Check if the next cell is walkable or the exit
+                if maze[next_cell[1]][next_cell[0]] in (0, 2):
+                    # Calculate the new cost to reach the next cell
                     new_cost = cost_so_far[current] + 1
+                    
+                    # Update the cost and path if the new cost is lower or the cell is not visited
                     if next_cell not in cost_so_far or new_cost < cost_so_far[next_cell]:
                         cost_so_far[next_cell] = new_cost
                         priority = new_cost + heuristic(goal, next_cell)
                         heapq.heappush(frontier, (priority, next_cell))
                         came_from[next_cell] = current
-
+        
         # Mark the current position as red
         maze[current_position[1]][current_position[0]] = 4
-
+        
         # Draw the maze with the updated colors
         draw_maze(maze, screen)
         clock.tick(20)
-
+    
+    # Mark the goal position and current position as blue if the exit is found
     if found_exit:
-        maze[goal[1]][goal[0]] = 3  # Mark the goal position as blue
-        maze[current_position[1]][current_position[0]] = 3 # Mark the current position as blue
-        
+        maze[goal[1]][goal[0]] = 3
+        maze[current_position[1]][current_position[0]] = 3
+    
+    # Draw the final state of the maze
     draw_maze(maze, screen)
-
+    
     return found_exit
 
 
