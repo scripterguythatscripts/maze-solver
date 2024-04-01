@@ -11,7 +11,7 @@ def remove_current_positions(maze, screen):
     for y in range(MAZE_HEIGHT):
         for x in range(MAZE_WIDTH):
             if maze[y][x] == 4:
-                maze[y][x] = 3
+                maze[y][x] = 2
     draw_maze(maze, screen)
 
 def breadth_first_search(maze, start_pos, screen, clock):
@@ -56,41 +56,45 @@ def a_star_search(maze, start, goal, screen, clock):
     came_from = {start: None}
     cost_so_far = {start: 0}
     found_exit = False
+    current_position = start
 
     while frontier and not found_exit:
         current = heapq.heappop(frontier)[1]
+
+        if current == goal:
+            found_exit = True
+            break
+
+        maze[current_position[1]][current_position[0]] = 3
+
+        current_position = current
 
         for dx, dy in [(0, 1), (0, -1), (1, 0), (-1, 0)]:
             next_cell = (current[0] + dx, current[1] + dy)
             if 0 <= next_cell[0] < MAZE_WIDTH + 1 and 0 <= next_cell[1] < MAZE_HEIGHT + 1:
                 if maze[next_cell[1]][next_cell[0]] in (0, 2):  # Check if the cell is walkable or the exit
-                    if maze[next_cell[1]][next_cell[0]] == 2:  # Check if the cell is the exit
-                        found_exit = True
-                        came_from[next_cell] = current
-                        break
-
                     new_cost = cost_so_far[current] + 1
                     if next_cell not in cost_so_far or new_cost < cost_so_far[next_cell]:
                         cost_so_far[next_cell] = new_cost
                         priority = new_cost + heuristic(goal, next_cell)
                         heapq.heappush(frontier, (priority, next_cell))
                         came_from[next_cell] = current
-                        # Mark the cell as visited
-                        maze[next_cell[1]][next_cell[0]] = 4
 
-        # Draw the current cell as the current position
-        maze[current[1]][current[0]] = 3
+        # Mark the current position as red
+        maze[current_position[1]][current_position[0]] = 4
+
+        # Draw the maze with the updated colors
         draw_maze(maze, screen)
-        clock.tick(TICK_SPEED)
+        clock.tick(20)
 
     if found_exit:
-        # Mark the goal cell as part of the path
-        maze[goal[1]][goal[0]] = 3
-        print("Done!")
-
-    remove_current_positions(maze, screen)
+        maze[goal[1]][goal[0]] = 3  # Mark the goal position as blue
+        maze[current_position[1]][current_position[0]] = 3 # Mark the current position as blue
+        
+    draw_maze(maze, screen)
 
     return found_exit
+
 
 def solve_maze(maze, start_pos, algorithm, screen, clock):
     """Solves the maze using the specified algorithm."""
