@@ -16,6 +16,8 @@ def remove_current_positions(maze, screen):
 
 def breadth_first_search(maze, start_pos, screen, clock):
     """Solves the maze using a breadth-first search algorithm."""
+    """Note: Red markers indicate considered paths."""
+
     current_positions = deque([start_pos])
     found_exit = False
 
@@ -51,6 +53,8 @@ def breadth_first_search(maze, start_pos, screen, clock):
 
 def a_star_search(maze, start, goal, screen, clock):
     """Solves the maze using the A* search algorithm."""
+    """Note: Red markers indicate traveled paths."""
+
     # Initialize the frontier heap with the starting position and its priority
     frontier = [(0, start)]
     
