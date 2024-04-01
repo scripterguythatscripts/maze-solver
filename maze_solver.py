@@ -99,7 +99,7 @@ def a_star_search(maze, start, goal, screen, clock):
         
         # Draw the maze with the updated colors
         draw_maze(maze, screen)
-        clock.tick(20)
+        clock.tick(TICK_SPEED)
     
     # Mark the goal position and current position as blue if the exit is found
     if found_exit:
