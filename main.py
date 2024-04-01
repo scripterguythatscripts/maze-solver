@@ -2,7 +2,7 @@ import pygame
 from maze_generator import generate_maze
 from maze_solver import solve_maze
 from maze_visualizer import keep_screen_open, init_screen
-from config import MAZE_WIDTH, MAZE_HEIGHT, CELL_SIZE
+from config import MAZE_WIDTH, MAZE_HEIGHT
 
 def main():
     maze = generate_maze(MAZE_WIDTH, MAZE_HEIGHT)
