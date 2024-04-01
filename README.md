@@ -51,12 +51,13 @@ python main.py
 The project is designed to facilitate the addition of custom search algorithms. Here's how:
 
 1. Open the 'maze_solver.py' file.
-2. Define a function for your algorithm, adhering to the following signature:
+2. Define a function for your algorithm, generally adhering to the following signature:
 
     ```python
-    def your_algorithm(maze, start_pos, goal_pos, screen, clock):
+    def your_algorithm(maze, goal_pos, screen, clock):
         # Implement your algorithm logic here
         return solved  # Return whether or not the algorithm has found an exit
     ```
 
-3. Integrate your algorithm into 'main.py' by calling it and passing the required parameters.
+3. Integrate your algorithm into the solve_maze() function.
+4. Use your new search algorithm by calling it in 'main.py' and passing the required parameters.
