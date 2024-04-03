@@ -61,3 +61,7 @@ The project is designed to facilitate the addition of custom search algorithms. 
 
 3. Integrate your algorithm into the solve_maze() function.
 4. Use your new search algorithm by calling it in 'main.py' and passing the required parameters.
+
+## Note
+
+A current inconvenience is that when implementing new search algorithms, it is important to utilize the provided functions for visualization and understand the value schemes. I am currently working on an improved version that simplifies the search function to only return the next position, allowing the existing program to handle the remaining functionality.
