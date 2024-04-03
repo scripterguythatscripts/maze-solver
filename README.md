@@ -64,7 +64,7 @@ The project is designed to facilitate the addition of custom search algorithms. 
 
 ## Note
 
-Currently, when adding new search algorithms to this maze-solver program, it is important to keep in mind the following:
+Currently, when adding new search algorithms to this maze_solver.py file, it is important to keep in mind the following:
 
 - Utilize the provided functions for visualization to ensure consistent output.
 - Understand and adhere to the existing value schemes for representing maze elements and search states.
