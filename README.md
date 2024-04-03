@@ -64,4 +64,9 @@ The project is designed to facilitate the addition of custom search algorithms. 
 
 ## Note
 
-A current inconvenience is that when implementing new search algorithms, it is important to utilize the provided functions for visualization and understand the value schemes. I am currently working on an improved version that simplifies the search function to only return the next position, allowing the existing program to handle the remaining functionality.
+Currently, when adding new search algorithms to this maze-solver program, it is important to keep in mind the following:
+
+- Utilize the provided functions for visualization to ensure consistent output.
+- Understand and adhere to the existing value schemes for representing maze elements and search states.
+
+I am actively working on an improved version of the program that simplifies the process of implementing new search algorithms. The goal is to refactor the search function to only return the next position, allowing the existing program to handle the remaining functionality, such as updating the maze, visualizing the search process, and determining when the goal is reached. This will make it easier for contributors to focus solely on their search algorithms without needing to understand the intricacies of the existing codebase.
